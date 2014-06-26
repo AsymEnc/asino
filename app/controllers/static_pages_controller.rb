@@ -1,11 +1,15 @@
 class StaticPagesController < ApplicationController
   before_filter :authenticate_user!, :except => [:help, :about]
   def main
-    @query = Document.search do
-      fulltext params[:search]
-      paginate :page => params[:page], :per_page => 15
+    if params[:search].nil? or params[:search].strip.empty?
+      @only_search = true
+    else
+      @query = Document.search do
+        fulltext params[:search]
+        paginate :page => params[:page], :per_page => 15
+      end
+      @documents = @query.results
     end
-    @documents = @query.results
   end
 
   def help
