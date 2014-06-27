@@ -17,8 +17,9 @@
   
   <div class="row-fluid <%= if @only_search then 'hide' end %>">
     <div class="col-md-3" id="main-search-options">
-      <h3>Options</h3>
-      <p>Under construction!</p>
+      <% if @documents.respond_to?(:total_count) and @documents.total_count > 0 %>
+        <div class="alert alert-success"><strong>Documents found:</strong> <%= @documents.total_count %></div>
+      <% end %>
     </div>
 
     <div class="col-md-9" id="main-search-results">
