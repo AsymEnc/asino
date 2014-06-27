@@ -43,7 +43,7 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'sunspot_rails'
-gem 'sunspot_solr', :group => :development
+gem 'sunspot_solr'#, :group => :development
 gem 'progress_bar'
 
 gem 'will_paginate'
