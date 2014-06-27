@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:help, :about]
+  before_filter :authenticate_user!, :except => [:about]
   def main
     if params[:search].nil? or params[:search].strip.empty?
       @only_search = true
