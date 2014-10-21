@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-<!-- http://stackoverflow.com/questions/22774780/bootstrap-full-width-text-input-within-inline-form -->
+  <!-- http://stackoverflow.com/questions/22774780/bootstrap-full-width-text-input-within-inline-form -->
   <div class="row" id="main-search">
     <form accept-charset="UTF-8" action="<%= root_path %>" method="get">
       <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
@@ -14,7 +14,7 @@
       </div>
     </form>
   </div>
-  
+
   <div class="row-fluid <%= if @only_search then 'hide' end %>">
     <div class="col-md-3" id="main-search-options">
       <% if @documents.respond_to?(:total_count) and @documents.total_count > 0 %>
@@ -42,7 +42,7 @@
                     <th>Location</th>
                   </tr>
                 </thead>
-                
+
                 <tbody>
                   <% @documents.each do |document| %>
                     <tr>
@@ -54,11 +54,11 @@
                   <% end %>
                 </tbody>
               </table>
-              
+
             <% else %>
-              
+
               <div class="alert alert-danger main-page-warning"><strong>No results found:</strong> try searching again!</div>
-              
+
             <% end %>
           </div>
           <div class="tab-pane" id="main-search-wordcloud"><div class="alert alert-info main-page-warning">Wordcloud: to be awaited...</div></div>
