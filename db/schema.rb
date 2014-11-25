@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20140624134000) do
     t.string   "fulltext"
     t.date     "date"
     t.string   "location"
+    t.string   "collection"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
