@@ -6,12 +6,12 @@
       <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
 
       <div class="form-group">
-        <div class="col-lg-3">
+        <div class="col-lg-3 input-group-lg">
           <div class="input-daterange" id="datepicker">
             <div class="input-group">
-              <input type="text" class="input-small form-control" name="start" placeholder="01.01.1870"/>
+              <input type="text" class="input-small form-control" name="start" value="1850-01-01" placeholder="1850-01-01"/>
               <span class="input-group-addon">to</span>
-              <input type="text" class="input-small form-control" name="end" placeholder="31.12.1995"/>
+              <input type="text" class="input-small form-control" name="end" value="1995-01-01" placeholder="1995-01-01"/>
             </div>
           </div>
         </div>
@@ -37,13 +37,46 @@
   </div>
 
   <div class="row-fluid <%= if @only_search then 'hide' end %>">
-    <div class="col-md-3" id="main-search-options">
-      <% if @documents.respond_to?(:total_count) and @documents.total_count > 0 %>
-        <div class="alert alert-success"><strong>Documents found:</strong> <%= @documents.total_count %></div>
-      <% end %>
-      <p>Date from: <%= @date_start  %></p>
-      <p><%= @date_end  %></p>
-      <p><%= @collection  %></p>
+    <div class="col-md-3" id="main-sidepanel">
+      <div id="main-search-options">
+        <% if @documents.respond_to?(:total_count) and @documents.total_count > 0 %>
+          <div class="alert alert-info">
+            <p><strong>Documents found:</strong> <%= @documents.total_count %></p>
+            <p><strong>You searched for:</strong> <%= @text %></p>
+            <p><strong>Between:</strong> <%= @date_start  %> and <%= @date_end %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <h3>Restrict results</h3>
+      <div class="alert alert-warning" id="facets">
+        <strong>Browse by Location:</strong>
+        <ul class="list-unstyled" style="margin-bottom: 10px">
+          <% if @documents %>
+            <% for row in @query.facet(:location).rows -%>
+              <li class="list-unstyled"><%= link_to(row.value, url_for(:location => row.value)) %> (<%= row.count %>)</li>
+            <% end -%>
+          <% end  %>
+        </ul>
+
+        <strong>Browse by Type:</strong>
+        <ul class="list-unstyled" style="margin-bottom: 10px">
+          <li><a href="#">Daily</a> (123)</li>
+          <li><a href="#">Weekly</a> (12)</li>
+          <li><a href="#">Biweekly</a> (16)</li>
+        </ul>
+
+        <strong>Browse by Source:</strong>
+        <ul class="list-unstyled" style="margin-bottom: 10px">
+          <li><a href="#">Algemeen Handelsblad</a> (430)</li>
+          <li><a href="#">Het Centrum</a> (567)</li>
+          <li><a href="#">De Telegraaf</a> (457)</li>
+          <li><a href="#">Het volk</a> (421)</li>
+          <li><a href="#">De standaard</a> (17)</li>
+        </ul>
+      </div>
+
+      <button type="button" class="btn btn-primary">Download all documents</button>
     </div>
 
     <div class="col-md-9" id="main-search-results">
@@ -60,7 +93,8 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <!-- <th>Document ID</th> -->
+                    <th>Box</th>
+                    <th>Doc ID</th>
                     <th>Document Title</th>
                     <th>Issue Date</th>
                     <th>Location</th>
@@ -70,7 +104,8 @@
                 <tbody>
                   <% @documents.each do |document| %>
                     <tr>
-                      <!--<td><%= document.docid %></td>-->
+                      <td><input type="checkbox"></td>
+                      <td><%= document.id %></td>
                       <td><%= link_to document.title, document %></td>
                       <td><%= document.date %></td>
                       <td><%= document.location %></td>
@@ -92,5 +127,5 @@
     </div>
 
   </div>
-  <%#= debug(params) if Rails.env.development? %>
+  <%= debug(params) if Rails.env.development? %>
 </div>

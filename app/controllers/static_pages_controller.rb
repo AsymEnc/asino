@@ -1,17 +1,21 @@
 class StaticPagesController < ApplicationController
   before_filter :authenticate_user!, :except => [:about]
   def main
-    date_start = params[:start]
-    date_end   = params[:end]
-    collection = params[:collection]
-    text       = params[:search]
+    @date_start = params[:start]
+    @date_end   = params[:end]
+    @collection = params[:collection]
+    @text       = params[:search]
 
-    if text.nil? or text.strip.empty?
+    date_start, date_end, text, collection = @date_start, @date_end, @text, @collection
+
+    if @text.nil? or @text.strip.empty?
       @only_search = true
     else
       @query = Document.search do
         with(:collection, collection.downcase)
-        #with(:date, )
+        with(:date, (date_start .. date_end))
+
+        facet(:location)
 
         fulltext text
 
