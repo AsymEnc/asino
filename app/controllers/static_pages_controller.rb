@@ -1,13 +1,25 @@
 class StaticPagesController < ApplicationController
   before_filter :authenticate_user!, :except => [:about]
   def main
-    if params[:search].nil? or params[:search].strip.empty?
+    date_start = params[:start]
+    date_end   = params[:end]
+    collection = params[:collection]
+    text       = params[:search]
+
+    if text.nil? or text.strip.empty?
       @only_search = true
     else
       @query = Document.search do
-        fulltext params[:search]
+        with(:collection, collection.downcase)
+        #with(:date, )
+
+        fulltext text
+
+        order_by(:date, :asc)
+
         paginate :page => params[:page], :per_page => 15
       end
+
       @documents = @query.results
     end
   end

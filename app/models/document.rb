@@ -3,5 +3,6 @@ class Document < ActiveRecord::Base
     text :fulltext
     date :date
     string :collection
+    string :location
   end
 end
