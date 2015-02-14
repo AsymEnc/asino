@@ -54,3 +54,5 @@ gem 'progress_bar'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+gem 'smart_listing'

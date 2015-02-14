@@ -1,11 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= @document.date %>: <%= @document.title %></h3>
-  </div>
-  <div class="panel-body">
-    <%= @document.fulltext %>
-  </div>
-</div>
+<div>
+  <div class='col-md-3' id="text-sidepanel">
+    <h3>Text details:</h3>
+    <div class="alert">
+    <ul class="list-unstyled">
+      <li><strong>Source:</strong> <%= "Algemeen Handelsblad" %></li>
+      <li><strong>Date:</strong> <%= @document.date %></li>
+      <li><strong>Issue:</strong> <%= "21" %></li>
+      <li><strong>Page:</strong> <%= "4" %></li>
+      <li><strong>Image:</strong> <%= link_to "text.jpeg", @document.image_url, :target => "_blank" %></li>
+      <li><strong>PDF:</strong> <%= link_to "text.pdf", @document.image_url.sub(/:[^:]+$/, ":pdf"), :target => "_blank" %></li>
+    </ul>
+    </div>
+    <button type="button" class="btn btn-primary">Download this document</button>
 
+  </div>
+
+      <div class="col-md-9" id="text-mainpanel">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#text-list" data-toggle="tab">Raw text</a></li>
+          <li><a href="#text-wordcloud" data-toggle="tab">Wordcloud</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="text-list">
+            <div class="panel panel-default" style="margin-top: 15px">
+              <div class="panel-heading"><%= @document.title %></div>
+              <div class="panel-body">
+                <%= @document.fulltext %>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane" id="text-wordcloud">
+            <div><%= image_tag 'wordcloud.png' %></div>
+            <div class="alert alert-info main-page-warning">Wordcloud: to be awaited...</div>
+          </div>
+        </div>
+      </div> <!-- tabbable -->
+    </div>
+
+</div>

@@ -120,12 +120,18 @@
 
             <% end %>
           </div>
-          <div class="tab-pane" id="main-search-wordcloud"><div class="alert alert-info main-page-warning">Wordcloud: to be awaited...</div></div>
-          <div class="tab-pane" id="main-search-timeline"><div class="alert alert-info main-page-warning">Timeline: to be awaited...</div></div>
+          <div class="tab-pane" id="main-search-wordcloud">
+            <div><%= image_tag 'wordcloud.png' %></div>
+            <div class="alert alert-info main-page-warning">Wordcloud: to be awaited...</div>
+          </div>
+          <div class="tab-pane" id="main-search-timeline">
+            <div><%= image_tag('timeline.png', height: '250', width: '700') %></div>
+            <div class="alert alert-info main-page-warning">Timeline: to be awaited...</div>
+          </div>
         </div>
       </div> <!-- tabbable -->
     </div>
 
   </div>
-  <%= debug(params) if Rails.env.development? %>
+  <%#= debug(params) if Rails.env.development? %>
 </div>
