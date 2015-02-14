@@ -1,3 +1,6 @@
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, '/var/www/apps/asino2'
+
 server 'ldvpc14.uni-trier.de', user: 'arbox', roles: %w(app web db)
 set :branch, 'Capistrano'
 

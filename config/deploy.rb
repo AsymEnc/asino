@@ -7,8 +7,7 @@ set :repo_url, 'git@github.com:arbox/asino.git'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-# Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/apps/asino2'
+
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -24,7 +23,8 @@ set :deploy_to, '/var/www/apps/asino2'
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/database.yml',
-                                                 'config/sunspot.yml')
+                                                 'config/sunspot.yml',
+                                                 'db/production.sqlite3')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('bin',
