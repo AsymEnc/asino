@@ -9,3 +9,6 @@
 # _log_ is not the last extension for Solr logs
 /log/*.log*
 /tmp
+
+# Older Capistrano configuration (v. 2).
+/old_cap
