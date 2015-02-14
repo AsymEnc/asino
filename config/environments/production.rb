@@ -29,7 +29,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   # AB: It is not a solution, but a temporal hack.
   # http://stackoverflow.com/questions/19961794/rails-4-bootstrap-sass-gem-assets-work-on-development-but-not-on-production
-  config.assets.compile = true
+  # config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true

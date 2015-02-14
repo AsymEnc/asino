@@ -4,6 +4,9 @@ set :deploy_to, '/var/www/apps/asino2'
 server 'ldvpc14.uni-trier.de', user: 'arbox', roles: %w(app web db)
 set :branch, 'Capistrano'
 
+# We create an identical environment, Staging = Production.
+set :rails_env, 'production'
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
