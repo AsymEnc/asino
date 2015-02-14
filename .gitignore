@@ -12,3 +12,7 @@
 
 # Older Capistrano configuration (v. 2).
 /old_cap
+
+/config/database.yml
+/config/sunspot.yml
+
