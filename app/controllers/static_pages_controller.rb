@@ -1,5 +1,7 @@
+# Main search controller.
 class StaticPagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:about]
+  before_action :authenticate_user!, except: [:about]
+
   def main
     @date_start = params[:start]
     @date_end   = params[:end]
@@ -13,7 +15,7 @@ class StaticPagesController < ApplicationController
     else
       @query = Document.search do
         with(:collection, collection.downcase)
-        with(:date, (date_start .. date_end))
+        with(:date, (date_start..date_end))
 
         facet(:location)
 
