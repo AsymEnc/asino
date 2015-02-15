@@ -21,3 +21,5 @@
 
 /.capistrano
 
+# Not tracking configuration for now.
+/solr
