@@ -2,7 +2,7 @@
 set :deploy_to, '/var/www/apps/asino2'
 
 server 'ldvpc14.uni-trier.de', user: 'arbox', roles: %w(app web db)
-set :branch, 'Capistrano'
+set :branch, 'master'
 
 # We create an identical environment, Staging = Production.
 set :rails_env, 'production'
