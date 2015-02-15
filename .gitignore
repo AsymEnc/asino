@@ -5,6 +5,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore raw seeding data, it's huge!
+/db/seeds/data
+
 # Ignore all logfiles and tempfiles.
 # _log_ is not the last extension for Solr logs
 /log/*.log*
