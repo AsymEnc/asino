@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
-  resources :documents
+  devise_for :users, skip: :registration
 
-  devise_for :users, :skip => :registration
   root 'static_pages#main'
-  match('/help', {:to => 'static_pages#help', :via => 'get'})
-  match('/about', {:to => 'static_pages#about', :via => 'get'})
-  
-  #get 'static_pages/main'
 
-  #get 'static_pages/help'
+  match '/help',  to: 'static_pages#help',  via: 'get'
+  match '/about', to: 'static_pages#about', via: 'get'
 
-  #get 'static_pages/about'
-
+  resources :documents
 end
