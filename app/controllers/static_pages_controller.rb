@@ -3,30 +3,15 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, except: [:about]
 
   def main
-    @date_start = params[:start]
-    @date_end   = params[:end]
-    @collection = params[:collection]
-    @text       = params[:search]
+  end
 
-    date_start, date_end, text, collection = @date_start, @date_end, @text, @collection
-
-    if @text.nil? or @text.strip.empty?
-      @only_search = true
+  def search
+    if params[:search].present? && params[:search][:q].present?
+      @query = params[:search][:q]
+      @search = search_for(@query)
+      render 'main'
     else
-      @query = Document.search do
-        with(:collection, collection.downcase)
-        with(:date, (date_start..date_end))
-
-        facet(:location)
-
-        fulltext text
-
-        order_by(:date, :asc)
-
-        paginate :page => params[:page], :per_page => 15
-      end
-
-      @documents = @query.results
+      redirect_to root_path
     end
   end
 
@@ -34,5 +19,24 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+  end
+
+  private
+
+  def search_for(query)
+    Document.search do
+      # with(:collection, 'nl' || collection.downcase)
+      # with(:date, (date_start..date_end))
+
+      facet :location
+
+      facet :collection
+
+      fulltext query
+
+      order_by(:date, :asc)
+
+      paginate page: params[:page], per_page: 15
+    end
   end
 end

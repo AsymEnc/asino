@@ -1,3 +1,4 @@
+# Model of the document.
 class Document < ActiveRecord::Base
   searchable do
     text :fulltext
