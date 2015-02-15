@@ -53,6 +53,9 @@ gem 'will_paginate-bootstrap'
 gem 'smart_listing'
 
 group :development do
+  # Using Thin instead of WEBrick.
+  gem 'thin', '~> 1.6.3'
+
   # Use Capistrano for deployment
   gem 'capistrano', '~> 3.3.5', require: false
   gem 'capistrano-rails', '~> 1.1.2', require: false
