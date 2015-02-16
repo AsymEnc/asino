@@ -28,7 +28,9 @@ class StaticPagesController < ApplicationController
     Document.search do
       with(:location, params[:search][:location]) if params[:search][:location]
       with(:collection, params[:search][:collection]) if params[:search][:collection]
-      # with(:date, (date_start..date_end))
+      if params[:search][:begin] && params[:search][:end]
+        with(:date, (params[:search][:begin]..params[:search][:end]))
+      end
 
       facet :location
 
