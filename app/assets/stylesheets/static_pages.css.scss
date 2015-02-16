@@ -2,15 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#main-search {
-  padding-top: 30px
-}
-
-#main-search-options {
+#main-results {
   padding-top: 20px
 }
 
-#main-search-results {
+/* @FIXME: Fix this 80% alignment. */
+.vertical-center {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+#main-search-options {
   padding-top: 20px
 }
 
