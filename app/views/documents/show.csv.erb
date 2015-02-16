@@ -1,0 +1,8 @@
+<%- headers = ['DocID', 'Title', 'Fulltext', 'Date', 'Location', 'Collection'] -%>
+<%= CSV.generate_line headers %>
+<%= CSV.generate_line([@document.docid,
+                       @document.title,
+                       @document.fulltext,
+                       @document.date,
+                       @document.location,
+                       @document.collection], force_quotes: true) %>

@@ -1,3 +1,4 @@
+require 'csv'
 #
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
@@ -11,6 +12,13 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = 'attachment; filename="document-list"'
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   # GET /documents/new

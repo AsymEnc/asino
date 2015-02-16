@@ -1,23 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <div class='col-md-3' id="text-sidepanel">
+  <div class='col-md-2' id="text-sidepanel">
     <h3>Text details:</h3>
     <div class="alert">
     <ul class="list-unstyled">
-      <li><strong>Source:</strong> <%= "Algemeen Handelsblad" %></li>
+      <li><strong>Source:</strong> <%= "Dummy" %></li>
       <li><strong>Date:</strong> <%= @document.date %></li>
-      <li><strong>Issue:</strong> <%= "21" %></li>
-      <li><strong>Page:</strong> <%= "4" %></li>
+      <li><strong>Issue:</strong> <%= "Dummy" %></li>
+      <li><strong>Page:</strong> <%= "Dummy" %></li>
       <li><strong>Image:</strong> <%= link_to "text.jpeg", @document.image_url, :target => "_blank" %></li>
       <li><strong>PDF:</strong> <%= link_to "text.pdf", @document.image_url.sub(/:[^:]+$/, ":pdf"), :target => "_blank" %></li>
     </ul>
     </div>
-    <button type="button" class="btn btn-primary">Download this document</button>
-
+    <%= link_to 'Download as CSV', document_path(@document, format: :csv), type: 'button', class: 'btn btn-primary' %>
   </div>
 
-      <div class="col-md-9" id="text-mainpanel">
+      <div class="col-md-8" id="text-mainpanel">
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#text-list" data-toggle="tab">Raw text</a></li>
