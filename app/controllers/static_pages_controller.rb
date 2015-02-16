@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
 
   def search
     if params[:search].present? && params[:search][:q].present?
+      @old_params = params
       @query = params[:search][:q]
       @search = search_for(@query)
       render 'main'
@@ -25,7 +26,8 @@ class StaticPagesController < ApplicationController
 
   def search_for(query)
     Document.search do
-      # with(:collection, 'nl' || collection.downcase)
+      with(:location, params[:search][:location]) if params[:search][:location]
+      with(:collection, params[:search][:collection]) if params[:search][:collection]
       # with(:date, (date_start..date_end))
 
       facet :location

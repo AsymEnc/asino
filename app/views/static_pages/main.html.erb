@@ -17,32 +17,52 @@
   <% if @search %>
     <div class='row' id='main-results'>
       <% if @search.results.respond_to?(:total_count) and @search.results.total_count > 0 %>
+        <!-- Side Panel. -->
         <div class="col-sm-2" id="main-sidepanel">
           <div class="alert alert-info" id='main-search-options'>
             <p><strong>Documents found:</strong> <%= @search.results.total_count %></p>
-            <p><strong>You searched for:</strong> <%= @text %></p>
             <p><strong>Between:</strong> <%= @date_start  %> and <%= @date_end %></p>
           </div>
-
-          <h3>Restrict results</h3>
+          <%=  debug @old_params %>
+          <!-- Facets -->
+          <h3>Restrict results by:</h3>
           <div class="alert alert-warning" id="facets">
-            <strong>Browse by Location:</strong>
-            <ul class='list-unstyled'>
-              <% if @search.results %>
-                <% for row in @search.facet(:location).rows %>
-                  <li class="list-unstyled">
-                    <%= link_to(row.value, url_for(:location => row.value)) %> (<%= row.count %>)
-                  </li>
-                <% end %>
+            <dl class='list-unstyled'>
+              <dt>Location:</dt>
+              <% @search.facet(:location).rows.each do |row| %>
+                <dd><%= link_to row.value, search_path(search:
+                                                       {location: row.value,
+                                                        q: @query}) %>
+                  (<%= row.count %>)
+                </dd>
               <% end %>
-            </ul>
+              <% if params[:search][:location].present? %>
+                <% params[:search].delete(:location) %>
+                <%= link_to('-remove selection', search_path(params), class: 'remove') %>
+              <% end %>
+            </dl>
+
+            <dl class='list-unstyled'>
+              <dt>Document collection:</dt>
+              <% @search.facet(:collection).rows.each do |row| %>
+                <dd><%= link_to row.value, search_path(search:
+                                                       {collection: row.value,
+                                                        q: @query}) %>
+                  (<%= row.count %>)
+                </dd>
+              <% end %>
+              <% if params[:search][:collection].present? %>
+                <% params[:search].delete(:collection) %>
+                <%= link_to('-remove selection', search_path(params), class: 'remove') %>
+              <% end %>
+            </dl>
           </div>
           <div class='input-group'>
             <button type="button" class="btn btn-primary">Download all documents</button>
           </div>
         </div>
-
-        <div class="col-sm-9" id="main-search-results">
+        <!-- Main Panel. -->
+        <div class="col-sm-8" id="main-search-results">
           <div class="tabbable">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#main-search-list" data-toggle="tab">Result List</a></li>
@@ -50,12 +70,14 @@
               <li><a href="#main-search-timeline" data-toggle="tab">Timeline</a></li>
             </ul>
             <div class="tab-content">
+              <!-- @FIXME: Let this table be only 8 columns wide.-->
               <div class="tab-pane active" id="main-search-list">
                 <%= will_paginate @search.results, :renderer => BootstrapPagination::Rails %>
                 <table class="table">
                   <thead>
                     <tr>
                       <th>Box</th>
+                      <th>Score</th>
                       <th>Doc ID</th>
                       <th>Document Title</th>
                       <th>Issue Date</th>
@@ -64,9 +86,10 @@
                   </thead>
 
                   <tbody>
-                    <% @search.results.each do |document| %>
+                    <% @search.each_hit_with_result do |hit, document| %>
                       <tr>
                         <td><input type="checkbox"></td>
+                        <td><%= hit.score %></td>
                         <td><%= document.id %></td>
                         <td><%= link_to document.title, document %></td>
                         <td><%= document.date %></td>
