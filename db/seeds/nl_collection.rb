@@ -1,7 +1,7 @@
 require 'csv'
 require 'date'
 
-FILES_TO_PARSE = %w(hermione_1.csv hermione_2.csv hermione_3.csv)
+FILES_TO_PARSE = %w(nl_1.csv nl_2.csv nl_3.csv)
 
 FILES_TO_PARSE.map! { |f| "#{Rails.root}/db/seeds/data/#{f}" }
 

@@ -13,10 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20140624134000) do
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.string   "docid"
     t.string   "title"
-    t.string   "fulltext"
+    t.text     "fulltext"
     t.date     "date"
     t.string   "location"
     t.string   "collection"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140624134000) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
