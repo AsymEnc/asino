@@ -3,7 +3,7 @@ require 'date'
 
 FILES_TO_PARSE = %w(hermione_1.csv hermione_2.csv hermione_3.csv)
 
-FILES_TO_PARSE.map! { |f| "#{Rails.root}/db/seeds/#{f}" }
+FILES_TO_PARSE.map! { |f| "#{Rails.root}/db/seeds/data/#{f}" }
 
 params = {
   :col_sep => "\t",
