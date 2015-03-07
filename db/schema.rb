@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 20150307185721) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "docid"
-    t.string   "title"
+    t.text     "title"
     t.text     "fulltext",   limit: 4294967295
     t.date     "date"
     t.string   "location"
     t.string   "collection"
-    t.string   "image_url"
+    t.text     "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
