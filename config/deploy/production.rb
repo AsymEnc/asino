@@ -1,7 +1,10 @@
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/apps/asino'
+set :deploy_to, '/home/belianko/apps/asino'
 
-server 'ldvpc14.uni-trier.de', user: 'arbox', roles: %w(app web db)
+server 'zimks2033.uni-trier.de', user: 'belianko', roles: %w(app db)
+
+# server 'ldvpc14.uni-trier.de', user: 'arbox', roles: [:web]
+
 set :branch, 'master'
 
 # Custom SSH Options

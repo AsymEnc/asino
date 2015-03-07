@@ -1,13 +1,21 @@
+require 'capistrano/rbenv'
+
 # This configuration is valid only for current version of Capistrano.
 lock '3.3.5'
 
 set :application, 'asino'
 set :repo_url, 'git@github.com:arbox/asino.git'
 
+set :rbenv_type, :user
+set :rbenv_ruby, '2.1.5'
+set :rbenv_custom_path, '/home/belianko/.rbenv'
+set :rbenv_path, '/home/belianko/.rbenv'
+
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-
-
 
 # Default value for :scm is :git
 # set :scm, :git
