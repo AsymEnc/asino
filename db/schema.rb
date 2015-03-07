@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624134000) do
+ActiveRecord::Schema.define(version: 20150307183706) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "docid"
     t.string   "title"
-    t.text     "fulltext"
+    t.text     "fulltext",   limit: 4294967295
     t.date     "date"
     t.string   "location"
     t.string   "collection"
