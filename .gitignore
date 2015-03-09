@@ -23,3 +23,5 @@
 
 # Not tracking configuration for now.
 /solr
+
+/.rbenv-vars
