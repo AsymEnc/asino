@@ -1,5 +1,3 @@
-require 'capistrano/rbenv'
-
 # This configuration is valid only for current version of Capistrano.
 lock '3.3.5'
 
@@ -32,7 +30,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/database.yml',
                                                  'config/sunspot.yml',
-                                                 'db/production.sqlite3')
+                                                 '.rbenv-vars')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('bin',
@@ -42,7 +40,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin',
                                                'tmp/sockets',
                                                'vendor/bundle',
                                                'public/system',
-                                               'solr')
+                                               'solr',
+                                               'db/seeds/data')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
