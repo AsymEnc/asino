@@ -26,11 +26,6 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  # AB: It is not a solution, but a temporal hack.
-  # http://stackoverflow.com/questions/19961794/rails-4-bootstrap-sass-gem-assets-work-on-development-but-not-on-production
-  # config.assets.compile = true
-
   # Generate digests for assets URLs.
   config.assets.digest = true
 
@@ -38,10 +33,11 @@ Rails.application.configure do
   config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+  config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # Force all access to the app over SSL, use Strict-Transport-Security,
+  # and use secure cookies.
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
@@ -82,4 +78,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Prefix assets paths.
+  # config.assets.prefix = Asino::Application.config.relative_url_root
 end
