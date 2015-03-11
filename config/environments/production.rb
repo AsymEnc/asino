@@ -33,7 +33,8 @@ Rails.application.configure do
   config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
-  config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
+  # @NOTE: None, if using Passenger or Unicorn.
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security,
@@ -78,7 +79,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Prefix assets paths.
-  # config.assets.prefix = Asino::Application.config.relative_url_root
 end
