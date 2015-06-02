@@ -14,4 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require jquery-ui
+//= require jQAllRangeSliders-withRuler-min
 //= require_tree .
+
+$(document).ready(function() {
+    $("#slider").dateRangeSlider(
+        {
+            bounds: {
+                min: new Date(1870, 0, 1),
+                max: new Date(1960, 11, 31)
+            },
+
+            defaultValues: {
+                min: new Date(1890, 0, 1),
+                max: new Date(1940, 11, 31)
+            }
+        }
+    );
+})
