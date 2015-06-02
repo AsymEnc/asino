@@ -1,0 +1,14 @@
+<div class='input-group input-group-lg' style='padding-bottom: 15px'>
+  <span class='input-group-btn'>
+    <%=  button_tag lang.upcase, class: 'btn btn-large btn-default' %>
+  </span>
+  <%= text_field "search_#{lang}", "q_#{lang}", value: eval("@query_#{lang}"),
+    class: 'form-control input-lg',
+    placeholder: 'Put our query (Keywords, Phrases, Boolean Expressions)' %>
+
+  <span class='input-group-btn'>
+    <button class='btn btn-defult btn-lg'>
+      <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    </button>
+  </span>
+</div>
