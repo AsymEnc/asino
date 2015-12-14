@@ -2,10 +2,12 @@
 lock '3.3.5'
 
 set :application, 'asino'
+# Please change to the Asymenc repo.
 set :repo_url, 'git@github.com:arbox/asino.git'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.1.5'
+# Change to your own credentials.
 set :rbenv_custom_path, '/home/belianko/.rbenv'
 set :rbenv_path, '/home/belianko/.rbenv'
 
